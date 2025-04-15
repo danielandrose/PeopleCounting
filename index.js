@@ -47,6 +47,17 @@ app.post('/', async (req, res) => {
     }
 })
 
+app.delete('/delete-all', async (req, res) => {
+    try {
+        await Count.deleteMany({});
+        res.json({ message: "All data deleted successfully" });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+
 app.listen(5000, () => {
     console.log("The server is running")
 })
